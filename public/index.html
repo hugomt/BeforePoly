@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚽ BeforePoly - Goal Trading Bot</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>⚽ BeforePoly Bot</h1>
+            <p class="subtitle">Compra automática al detectar goles</p>
+        </header>
+
+        <!-- Panel de Carga de Evento -->
+        <section class="event-loader">
+            <h2>📍 Cargar Evento</h2>
+            <div class="input-group">
+                <input 
+                    type="text" 
+                    id="eventSlug" 
+                    placeholder="ej: lal-esp-gir-2026-01-16 o URL completa"
+                    class="input-slug"
+                >
+                <button id="loadEventBtn" class="btn btn-primary">
+                    🔍 Cargar Evento
+                </button>
+            </div>
+            <p class="help-text">Pega el slug del evento o la URL completa de Polymarket</p>
+        </section>
+
+        <!-- Información del Evento -->
+        <section id="matchSection" class="match-section hidden">
+            <h2 id="matchTitle" class="match-title">Cargando...</h2>
+
+            <!-- Marcador -->
+            <div class="scoreboard">
+                <div class="team local-team">
+                    <h3 id="localTeamName">Local</h3>
+                    <div class="score" id="scoreLocal">0</div>
+                </div>
+
+                <div class="divider">-</div>
+
+                <div class="team visitante-team">
+                    <h3 id="visitanteTeamName">Visitante</h3>
+                    <div class="score" id="scoreVisitante">0</div>
+                </div>
+            </div>
+
+            <!-- Botones de Gol -->
+            <div class="controls-section">
+                <h3>⚙️ Controles</h3>
+                
+                <div class="control-group">
+                    <label>💵 Cantidad a comprar (en shares):</label>
+                    <input type="number" id="quantity" value="100" min="1" class="input-number">
+                </div>
+
+                <div class="control-group">
+                    <label>📊 Precio máximo:</label>
+                    <input type="number" id="maxPrice" value="0.90" min="0" max="1" step="0.01" class="input-number">
+                </div>
+
+                                <div class="buttons-group">
+                    <button id="goalLocalBtn" class="btn btn-goal btn-local">
+                        ⚽ Gol Local
+                    </button>
+                    <button id="goalVisitanteBtn" class="btn btn-goal btn-visitante">
+                        ⚽ Gol Visitante
+                    </button>
+                </div>
+
+                <!-- VAR Section -->
+                <div class="var-section">
+                    <h4>📺 Control VAR (Anular gol)</h4>
+                    <div class="var-controls">
+                        <button id="varLocalBtn" class="btn btn-var btn-var-local">
+                            ❌ Anular Local
+                        </button>
+                        <button id="varVisitanteBtn" class="btn btn-var btn-var-visitante">
+                            ❌ Anular Visitante
+                        </button>
+                    </div>
+                </div>
+
+                <button id="resetBtn" class="btn btn-secondary btn-reset">
+                    🔄 Resetear Marcador
+                </button>
+
+            </div>
+
+            <!-- Mercados detectados -->
+            <div class="markets-section">
+                <h3>📊 Mercados Detectados</h3>
+                <div id="marketsList" class="markets-list">
+                    <p class="loading">Cargando mercados...</p>
+                </div>
+            </div>
+
+            <!-- Historial de compras -->
+            <div class="history-section">
+                <h3>📋 Historial de Compras</h3>
+                <div id="historyList" class="history-list">
+                    <p class="empty">Sin compras aún</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Mensajes de error -->
+        <div id="errorMessage" class="error-message hidden"></div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>🚀 BeforePoly v1.0 | Powered by Node.js + Polymarket API</p>
+        </footer>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+</html>
