@@ -284,4 +284,4 @@ class BeforePolyServer {
 }
 
 const server = new BeforePolyServer();
-server.start();
+server.start(); 
